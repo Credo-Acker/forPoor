@@ -155,8 +155,12 @@ export default {
 
 .main {
     position: relative;
-    background: linear-gradient(top, #f3f3f3, #ffffff) no-repeat;
+    /* background: linear-gradient(top, #f3f3f3, #ffffff); */
+    background: -ms-linear-gradient(top, #f3f3f3, #ffffff);        /* IE 10 */
+    background: -moz-linear-gradient(top, #f3f3f3, #ffffff);/*火狐*/
+    background: -webkit-linear-gradient(top, #f3f3f3, #ffffff);   /*Safari5.1 Chrome 10+*/
     background-size: 100% 100px;
+    background-repeat: no-repeat;
     padding-bottom: 20px;
 }
 
