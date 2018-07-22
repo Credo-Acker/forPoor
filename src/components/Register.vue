@@ -22,7 +22,7 @@
                             昵称
                         </div>
                         <div class="right-input">
-                            <input type="text" id="nickname" placeholder="输入文字">
+                            <input type="text" id="nickname" placeholder="输入文字" v-model="nickname">
                         </div>
                     </div>
                     <div class="password">
@@ -30,7 +30,7 @@
                             密码
                         </div>
                         <div class="right-input">
-                            <input type="password" id="password" placeholder="设定登录密码">
+                            <input type="password" id="password" placeholder="设定登录密码" v-model="password">
                         </div>
                     </div>
                     <div class="comfirm-password">
@@ -38,7 +38,7 @@
                             确认密码
                         </div>
                         <div class="right-input">
-                            <input type="password" id="comfirm-password" placeholder="重复登录密码">
+                            <input type="password" id="comfirm-password" placeholder="重复登录密码" v-model="password2">
                         </div>
                     </div>
                     <div class="shenfen">
@@ -56,7 +56,7 @@
                     </div>
                 </div>
             </div>
-            <button id="submit">
+            <button id="submit" @click="submit">
                 点击提交
             </button>
             <div class="question">
@@ -87,7 +87,10 @@ export default {
         return {
             xialaNone: true,
             shenfen: "确认选择",
-            mainNone: false
+            mainNone: false,
+            nickname: "",
+            password: "",
+            password2: ""
         }
     },
     created() {
@@ -114,6 +117,37 @@ export default {
                 this.shenfen = "产品收购者";
             }
             this.xialaNone = !this.xialaNone;
+        },
+        submit: function() {
+            let nickname_regex = /^[a-zA-Z0-9]{6,16}$/;
+            let password_regex = /^[a-zA-Z0-9]{6,16}$/;
+
+            if (nickname_regex.test(this.nickname)) {
+                if (password_regex.test(this.password)) {
+                    if (this.password === this.password2) {
+                        if (this.shenfen != "确认选择") {
+                            this.mainNone = true;
+                        } else {
+                            alert("还未选择身份。");
+                        }
+                    } else {
+                        alert("两次密码输入不一致");
+                    }
+                } else {
+                    if (this.password.length >= 6 && this.password <=16) {
+                        alert("密码只能是大小写字母和数字");
+                    } else {
+                        alert("密码长度需在6-16字符之间。");
+                    }
+                }
+            } else {
+                if (this.nickname.length >= 6 && this.nickname <=16) {
+                    alert("昵称只能是英文和数字的组合");
+                } else {
+                    alert("昵称长度需在6-16字符之间。");
+                }
+            }
+
         }
     }
 }
@@ -316,6 +350,7 @@ export default {
 
 .pingguo {
     position: relative;
+    top: 80px;
     width: 323px;
     height: 327px;
     margin: 0 auto;
@@ -323,7 +358,7 @@ export default {
 }
 
 .congratulation {
-    margin-top: 50px;
+    margin-top: 150px;
     text-align: center;
     font-size: 72px;
     color: #0429b3;
@@ -346,7 +381,7 @@ export default {
     width: 545px;
     height: 125px;
     margin: 0 auto;
-    margin-top: 50px;
+    margin-top: 100px;
 }
 
 </style>
