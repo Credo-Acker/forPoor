@@ -172,7 +172,7 @@ export default {
     margin-top: 40px;
     width: 155px;
     height: 155px;
-    background: url(../assets/logo.png);
+    background: url(../assets/reallogo.png);
     background-size: 100% 100%;
 }
 
