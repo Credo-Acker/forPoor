@@ -31,6 +31,7 @@ button:focus,input:focus {
 #app {
     position: relative;
     height: 100%;
+    min-width: 1050px;
     margin: 0;
     padding: 0;
 }
