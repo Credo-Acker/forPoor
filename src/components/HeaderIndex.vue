@@ -109,6 +109,8 @@ export default {
     max-width: 1010px;
     line-height: 30px;
     margin: 0 auto;
+    display: flex;
+    align-items: center;
     font-size: 12px;
     color: #666666;
 }
@@ -116,10 +118,13 @@ export default {
 .shoucang {
     display: inline-block;
     font-size: 12px;
+    z-index: 30;
+    cursor: pointer;
 }
 
 .search-text {
     position: relative;
+    display: inline-block;
     width: 450px;
     height: 20px;
     font-size: 12px;
@@ -129,22 +134,25 @@ export default {
     border: none;
     color: #999999;
     margin-left: 205px;
+    z-index: 30;
 }
 
 .search-botton {
     position: relative;
+    display: inline-block;
+    top: 0;
     width: 30px;
     height: 19px;
     background: url(../assets/search.png);
     background-size: 100% 100%;
     border: none;
     margin-left: 3px;
-    top: 5px;
+    z-index: 30;
 }
 
 .login {
     position: relative;
-    margin-left: 200px;
+    margin-left: 209px;
     font-size: 12px;
     color: #666666;
     cursor: pointer;
@@ -154,9 +162,9 @@ export default {
     position: relative;
     display: inline-block;
     width: 1px;
-    top: 2px;
+    top: 0px;
     height: 14px;
-    margin: 0 3px;
+    margin: 0 6px;
     background: #666666;
 }
 

@@ -603,7 +603,7 @@ export default {
     position: relative;
     display: inline-block;
     top: 0;
-    left: 10px;
+    left: 8px;
     height: 29px;
     line-height: 29px;
     font-size: 12px;
@@ -618,7 +618,7 @@ export default {
     position: relative;
     display: inline-block;
     height: 29px;
-    left: 10px;
+    left: 6px;
     line-height: 30px;
     font-size: 12px;
     width: 30px;

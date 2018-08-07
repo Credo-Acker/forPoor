@@ -47,17 +47,6 @@
                     </ul>
                 </div>
             </div>
-            <div class="xiangqing">
-                <div class="title">
-                    <div class="title-main">
-                        <span class="title-img2"></span><span class="title-title">注册详情</span>
-                    </div>
-                </div>
-                <div class="title-shadow"></div>
-                <div class="xiangqing-main">
-
-                </div>
-            </div>
             <div class="xuanchuan">
                 <div class="title">
                     <div class="title-main">
@@ -427,11 +416,6 @@ export default {
     margin-top: 45px;
 }
 
-.xiangqing {
-    position: relative;
-    margin-top: 45px;
-}
-
 .xuanchuan {
     position: relative;
     margin-top: 45px;
@@ -577,9 +561,6 @@ export default {
     height: 85px;
     background: #fbd437;
 }
-
-/* 注册详情 */
-
 
 /* 宣传视频 */
 .xuanchuan-main {
@@ -945,7 +926,6 @@ export default {
 .user {
     position: absolute;
     width: 100%;
-    right: 10px;
     top: 0;
 }
 
@@ -962,8 +942,8 @@ export default {
 .user_name {
     position: relative;
     display: inline-block;
-    top: 0;
-    left: 10px;
+    top: 0px;
+    left: -2px;
     height: 29px;
     line-height: 29px;
     font-size: 12px;
@@ -978,7 +958,7 @@ export default {
     position: relative;
     display: inline-block;
     height: 29px;
-    left: 10px;
+    left: -4px;
     line-height: 30px;
     font-size: 12px;
     width: 30px;
