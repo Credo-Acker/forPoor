@@ -10,11 +10,15 @@
         </div>
         <div class="main" :class="{mainNone: mainNone}">
             <div class="welcome">
-                欢迎你！请完善下你的信息，方便您以后的登录<br>以后可直接扫码登录。
+                欢迎注册！请完善下你的信息，方便您以后的登录
             </div>
             <div class="part-register">
                 <div class="left">
-
+                    <img src="../assets/xiugai.png" class="nowImg">
+                    <input type="file" accept="image/jpeg,image/jpg,image/png" class="uploadImg" v-on:change="changePreviewImage()">
+                    <div class="tip-img">
+                        点击选择上传头像
+                    </div>
                 </div>
                 <div class="right">
                     <div class="nickname">
@@ -56,7 +60,8 @@
                     </div>
                 </div>
             </div>
-            <button id="submit" @click="submit">
+            <!-- <button id="submit" @click="submit"> -->
+            <button id="submit" @click="register()">
                 点击提交
             </button>
             <div class="question">
@@ -66,9 +71,8 @@
             </div>
         </div>
         <div class="main2" :class="{mainNone: !mainNone}">
-            <div class="pingguo">
+            <img class="pingguo" :src="src">
 
-            </div>
             <div class="congratulation">
                 恭喜你！注册成功！
             </div>
@@ -90,11 +94,13 @@ export default {
             mainNone: false,
             nickname: "",
             password: "",
-            password2: ""
+            password2: "",
+            src: "",
+            imgName: "",
+            url: "http://backforpoor.credog.top"
         }
     },
     created() {
-
     },
     mounted() {
 
@@ -104,11 +110,7 @@ export default {
     },
     methods: {
         openItem: function() {
-            // let register = document.querySelector('.register');
             this.xialaNone = !this.xialaNone;
-            // register.addEventListener('click', function () {
-            //     this.xialaNone = true;
-            // });
         },
         choose: function(num) {
             if (num == 1) {
@@ -119,14 +121,15 @@ export default {
             this.xialaNone = !this.xialaNone;
         },
         submit: function() {
-            let nickname_regex = /^[a-zA-Z0-9]{6,16}$/;
+            let nickname_regex = /^[\u4E00-\u9FA5a-zA-Z]+$/;
             let password_regex = /^[a-zA-Z0-9]{6,16}$/;
 
             if (nickname_regex.test(this.nickname)) {
                 if (password_regex.test(this.password)) {
                     if (this.password === this.password2) {
                         if (this.shenfen != "确认选择") {
-                            this.mainNone = true;
+                            this.register();
+                            //this.mainNone = true;
                         } else {
                             alert("还未选择身份。");
                         }
@@ -141,13 +144,80 @@ export default {
                     }
                 }
             } else {
-                if (this.nickname.length >= 6 && this.nickname <=16) {
-                    alert("昵称只能是英文和数字的组合");
-                } else {
-                    alert("昵称长度需在6-16字符之间。");
+                if (this.nickname.length < 6 && this.nickname.length > 20) {
+                    alert("昵称必须6-20个字符(只能含中英文)");
                 }
             }
-
+            this.register();
+        },
+        changePreviewImage: function () {
+            this.previewImage(event.target, '.nowImg');
+        },
+        previewImage: function (file, prvid) {
+            // file：file控件
+            // prvid: 图片预览容器
+            let tip = "不是图片"; // 设定提示信息
+            let filters = {
+                "jpeg" : "/9j/4",
+                "gif" : "R0lGOD",
+                "png" : "iVBORw"
+            };
+            let prvbox = document.querySelector(prvid);
+            prvbox.innerHTML = "";
+            if (window.FileReader) { // html5方案
+                // for (let i = 0, f; f = file.files[i]; i++) {
+                let f = file.files[0];
+                let fr = new FileReader();
+                fr.onload = (e) => {
+                    let src = e.target.result;
+                    if (!validateImg(src)) {
+                        alert(tip);
+                    } else if (file.files[0].size / 1024 >= 150) {
+                        alert("图片超过150k，请重新选择");
+                    } else {
+                        prvbox.src = src;
+                        this.save(src, file.files[0].name);
+                    }
+                }
+                fr.readAsDataURL(f);
+                // }
+            } else { // 降级处理
+                if ( !/\.jpg$|\.png$|\.gif$/i.test(file.value) ) {
+                    alert(tip);
+                } else {
+                    prvbox.src = file.value;
+                }
+            }
+            function validateImg(data) {
+                let pos = data.indexOf(",") + 1;
+                for (let e in filters) {
+                    if (data.indexOf(filters[e]) === pos) {
+                        return e;
+                    }
+                }
+                return null;
+            }
+        },
+        save: function (src, name) {
+            this.src = src;
+            this.imgName = name;
+        },
+        register: function () {
+            let params = {
+                username: this.nickname,
+                password: this.password,
+                headImg: this.imgName,
+                src: this.src,
+                card: this.shenfen
+            };
+            this.$http.post(this.url + "/forPoor/register", params)
+                .then((response) => {
+                    if (response.data.status == "ok") {
+                        this.mainNone = true;
+                    } else if (response.data.status == "had") {
+                        alert("昵称已存在");
+                    }
+                });
         }
     }
 }
@@ -189,7 +259,6 @@ export default {
 
 .main {
     position: relative;
-    /* background: linear-gradient(top, #f3f3f3, #ffffff); */
     background: -ms-linear-gradient(top, #f3f3f3, #ffffff);        /* IE 10 */
     background: -moz-linear-gradient(top, #f3f3f3, #ffffff);/*火狐*/
     background: -webkit-linear-gradient(top, #f3f3f3, #ffffff);   /*Safari5.1 Chrome 10+*/
@@ -200,7 +269,6 @@ export default {
 
 .main2 {
     position: relative;
-    /* background: linear-gradient(top, #f3f3f3, #ffffff); */
     background: -ms-linear-gradient(top, #f3f3f3, #ffffff);        /* IE 10 */
     background: -moz-linear-gradient(top, #f3f3f3, #ffffff);/*火狐*/
     background: -webkit-linear-gradient(top, #f3f3f3, #ffffff);   /*Safari5.1 Chrome 10+*/
@@ -223,7 +291,7 @@ export default {
     position: relative;
     max-width: 1010px;
     margin: 0 auto;
-    margin-top: 150px;
+    margin-top: 50px;
 }
 
 .left {
@@ -231,8 +299,23 @@ export default {
     vertical-align: top;
     display: inline-block;
     width: 323px;
+    height: 357px;
+}
+
+.uploadImg {
+    position: absolute;
+    top: 0;
+    width: 323px;
     height: 327px;
-    background: url(../assets/pingguo.png) 100% 100%;
+    border-radius: 323px;
+    cursor: pointer;
+    opacity: 0;
+}
+
+.nowImg {
+    width: 323px;
+    height: 327px;
+    border-radius: 329px;
 }
 
 .right {
@@ -241,9 +324,18 @@ export default {
     display: inline-block;
 }
 
+.tip-img {
+    line-height: 20px;
+    height: 20px;
+    font-size: 18px;
+    color: #999999;
+    text-align: center;
+    margin-top: 20px;
+}
+
 .nickname,.password,.comfirm-password,.shenfen {
     position: relative;
-    margin-bottom: 70px;
+    margin-bottom: 30px;
 }
 
 .right-title {
@@ -321,7 +413,7 @@ export default {
     position: relative;
     display: block;
     margin: 0 auto;
-    margin-top: 100px;
+    margin-top: 60px;
     width: 780px;
     height: 75px;
     line-height: 75px;
@@ -353,11 +445,12 @@ export default {
 
 .pingguo {
     position: relative;
+    display: block;
     top: 80px;
     width: 323px;
     height: 327px;
     margin: 0 auto;
-    background: url(../assets/pingguo.png) 100% 100%;
+    border-radius: 323px;
 }
 
 .congratulation {

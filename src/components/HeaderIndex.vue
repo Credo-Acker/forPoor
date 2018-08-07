@@ -88,7 +88,7 @@ export default {
     },
     methods: {
         openLogin: function () {
-
+            this.$emit("getLoginRequest");
         },
         chooseSF: function (e) {
             let hover = document.querySelector('.shengfen-hover');
@@ -120,7 +120,7 @@ export default {
 
 .search-text {
     position: relative;
-    width: 260px;
+    width: 450px;
     height: 20px;
     font-size: 12px;
     padding: 0 10px;
@@ -128,7 +128,7 @@ export default {
     background-color: #ebeef1;
     border: none;
     color: #999999;
-    margin-left: 540px;
+    margin-left: 205px;
 }
 
 .search-botton {
@@ -138,13 +138,13 @@ export default {
     background: url(../assets/search.png);
     background-size: 100% 100%;
     border: none;
-    margin-left: -3px;
+    margin-left: 3px;
     top: 5px;
 }
 
 .login {
     position: relative;
-    margin-left: 50px;
+    margin-left: 200px;
     font-size: 12px;
     color: #666666;
     cursor: pointer;
@@ -240,7 +240,7 @@ export default {
     height: 40px;
     font-size: 12px;
     background: #c0c0c0;
-    z-index: 99;
+    z-index: 90;
 }
 
 .shengfen span {

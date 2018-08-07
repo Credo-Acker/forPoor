@@ -227,7 +227,7 @@ export default {
     bottom: 35px;
     height: 15px;
     width: 100%;
-    z-index: 99;
+    z-index: 90;
 }
 
 .slide-icon li {
