@@ -286,7 +286,7 @@ export default {
             isCover: true,
             logining: false,
             user_name: "",
-            url: "http://backforpoor.credog.top"
+            url: "http://gm.credog.top/app"
         }
     },
     created() {
@@ -300,8 +300,6 @@ export default {
                 if (response.data.status == "false") {
                     window.localStorage.setItem('src', "");
                     window.localStorage.setItem('username', "");
-                    // this.$store.commit('writeSrc', {data: ""});
-                    // this.$store.commit('writeUsername', {data: ""});
                     this.logining = false;
                 } else if (response.data.status == "ok") {
                     this.logining = true;
@@ -367,15 +365,12 @@ export default {
             };
             this.$http.post(this.url + "/forPoor/login", qs.stringify(params), {headers: {'Content-Type': 'application/x-www-form-urlencoded'}})
                 .then((response) => {
-                    console.log(response);
                     if (response.data.status == "ok") {
                         this.isCover = true;
                         this.logining = true;
                         this.user_name = response.data.username;
                         window.localStorage.setItem('src', response.data.headImg);
                         window.localStorage.setItem('username', response.data.username);
-                        // this.$store.commit('writeSrc', {data: response.data.headImg});
-                        // this.$store.commit('writeUsername', {data: response.data.username});
                     } else if (response.data.status == "false") {
                         alert("密码错误");
                     } else if (response.data.status == "no") {
@@ -388,10 +383,7 @@ export default {
         logout: function () {
             this.$http.post(this.url + "/forPoor/logout")
                 .then((response) => {
-                    console.log(response);
                     if (response.data.status == "ok") {
-                        // this.$store.commit('writeSrc', {data: ""});
-                        // this.$store.commit('writeUsername', {data: ""});
                         window.localStorage.setItem('src', "");
                         window.localStorage.setItem('username', "");
                         this.logining = false;

@@ -153,7 +153,7 @@ export default {
             username: "",
             user_name: "",
             logining: false,
-            url: "http://backforpoor.credog.top",
+            url: "http://gm.credog.top/app",
             isCover: true
         }
     },
@@ -200,8 +200,8 @@ export default {
                 .then((response) => {
                     console.log(response);
                     if (response.data.status == "ok") {
-                        this.$store.commit('writeSrc', {data: ""});
-                        this.$store.commit('writeUsername', {data: ""});
+                        window.localStorage.setItem('src', "");
+                        window.localStorage.setItem('username', "");
                         this.logining = false;
                     }
                 });
@@ -223,8 +223,6 @@ export default {
                         this.user_name = response.data.username;
                         window.localStorage.setItem('src', response.data.headImg);
                         window.localStorage.setItem('username', response.data.username);
-                        // this.$store.commit('writeSrc', {data: response.data.headImg});
-                        // this.$store.commit('writeUsername', {data: response.data.username});
                     } else if (response.data.status == "false") {
                         alert("密码错误");
                     } else if (response.data.status == "no") {

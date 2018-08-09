@@ -222,7 +222,7 @@ export default {
             password: "",
             user_name: "",
             logining: false,
-            url: "http://backforpoor.credog.top",
+            url: "http://gm.credog.top/app",
             isCover: true
         }
     },
@@ -237,8 +237,6 @@ export default {
                 if (response.data.status == "false") {
                     window.localStorage.setItem('src', "");
                     window.localStorage.setItem('username', "");
-                    // this.$store.commit('writeSrc', {data: ""});
-                    // this.$store.commit('writeUsername', {data: ""});
                     this.logining = false;
                 } else if (response.data.status == "ok") {
                     this.logining = true;
@@ -256,8 +254,8 @@ export default {
                 .then((response) => {
                     console.log(response);
                     if (response.data.status == "ok") {
-                        this.$store.commit('writeSrc', {data: ""});
-                        this.$store.commit('writeUsername', {data: ""});
+                        window.localStorage.setItem('src', "");
+                        window.localStorage.setItem('username', "");
                         this.logining = false;
                     }
                 });

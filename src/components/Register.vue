@@ -85,6 +85,7 @@
 </template>
 
 <script>
+import qs from 'qs';
 export default {
     name: 'Register',
     data () {
@@ -97,7 +98,7 @@ export default {
             password2: "",
             src: "",
             imgName: "",
-            url: "http://backforpoor.credog.top"
+            url: "http://gm.credog.top/app"
         }
     },
     created() {
