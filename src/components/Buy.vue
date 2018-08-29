@@ -334,12 +334,16 @@ export default {
     padding: 10px;
     background: #f7f7f7;
     border: 1px solid #eeeeee;
+    transition-property: all;
+    transition-duration: .3s;
 }
 
 .items-img {
     display: block;
     width: 275px;
     height: 155px;
+    transition-property: all;
+    transition-duration: .3s;
 }
 
 .shangjia,.dizhi,.lianxi {
@@ -358,6 +362,8 @@ export default {
     margin-left: 165px;
     border: 1px solid #e4e4e4;
     background: #ffffff;
+    transition-property: all;
+    transition-duration: .3s;
 }
 
 .items-div:hover {
@@ -373,7 +379,7 @@ export default {
     top: -5px;
 }
 
-.items-div:hover .xiangqing{
+.xiangqing:hover{
     background: #fbd437;
     color: #ffffff;
     box-shadow: 0px 0px 5px #dddddd;

@@ -345,6 +345,8 @@ export default {
     width: 472px;
     display: flex;
     align-items: flex-start;
+    transition-property: all;
+    transition-duration: 3s;
 }
 
 .items-img {
@@ -352,6 +354,8 @@ export default {
     width: 126px;
     height: 116px;
     border: 7px solid #fff2be;
+    transition-property: all;
+    transition-duration: .3s;
 }
 
 .items-des {
@@ -362,6 +366,8 @@ export default {
     color: #666666;
     width: 300px;
     padding: 10px;
+    transition-property: all;
+    transition-duration: .3s;
 }
 
 .shangjia,.diyu,.haoping {
@@ -382,6 +388,8 @@ export default {
     margin-left: 200px;
     border: 1px solid #e4e4e4;
     background: #ffffff;
+    transition-property: all;
+    transition-duration: .3s;
 }
 
 .items-div:hover .items-img {
@@ -393,7 +401,7 @@ export default {
     box-shadow: 0px 0px 10px #cccccc;
 }
 
-.items-div:hover .xiangqing {
+.xiangqing:hover {
     background: #fbd437;
     color: #ffffff;
 }

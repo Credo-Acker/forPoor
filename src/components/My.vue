@@ -317,6 +317,8 @@ export default {
     border-right: 1px solid #eeeeee;
     width: 105px;
     cursor: pointer;
+    transition-property: all;
+    transition-duration: .3s;
 }
 
 .mine li:hover {

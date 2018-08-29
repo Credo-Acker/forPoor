@@ -236,6 +236,7 @@ export default {
     background: #ffffff;
     border-radius: 15px;
     float: left;
+    cursor: pointer;
 }
 
 .slide-icon li:last-child {

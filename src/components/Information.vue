@@ -582,6 +582,8 @@ export default {
     border: 1px solid #eeeeee;
     left: 160px;
     top: -5px;
+    transition-property: all;
+    transition-duration: .3s;
 }
 
 .jinru:hover,.guanzhu:hover {

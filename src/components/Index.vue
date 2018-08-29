@@ -13,7 +13,7 @@
                 <div class="tuijian-main">
                     <ul>
                         <li class="tuijian-li">
-                            <div class="tuijian-div" @mouseover="tuijianh(0)" @mouseout="tuijian(0)">
+                            <div class="tuijian-div">
                                 <img src="../assets/dongbei.png" class="tuijian-img">
                                 <div class="tuijian-des">
                                     东北舒适大炕农家乐
@@ -21,7 +21,7 @@
                             </div>
                         </li>
                         <li class="tuijian-li">
-                            <div class="tuijian-div" @mouseover="tuijianh(1)" @mouseout="tuijian(1)">
+                            <div class="tuijian-div">
                                 <img src="../assets/yingtao.png" class="tuijian-img">
                                 <div class="tuijian-des">
                                     重庆璧山樱桃谷自摘兼贩卖有机樱桃提供商
@@ -29,7 +29,7 @@
                             </div>
                         </li>
                         <li class="tuijian-li">
-                            <div class="tuijian-div" @mouseover="tuijianh(2)" @mouseout="tuijian(2)">
+                            <div class="tuijian-div">
                                 <img src="../assets/shanshui3.png" class="tuijian-img">
                                 <div class="tuijian-des">
                                     湖南山水之乡农村特色农家乐
@@ -37,7 +37,7 @@
                             </div>
                         </li>
                         <li class="tuijian-li">
-                            <div class="tuijian-div" @mouseover="tuijianh(3)" @mouseout="tuijian(3)">
+                            <div class="tuijian-div">
                                 <img src="../assets/youshan4.png" class="tuijian-img">
                                 <div class="tuijian-des">
                                     四川农村有山有水旅游开发景点
@@ -338,20 +338,6 @@ export default {
                 }
             }
         },
-        tuijian: function (num) {
-            let tuijianDiv = document.querySelectorAll('.tuijian-div');
-            let tuijianImg = document.querySelectorAll('.tuijian-img');
-            let tuijianDes = document.querySelectorAll('.tuijian-des');
-            for (let i = 0; i < tuijianDiv.length; i++) {
-                tuijianDiv[i].className = "tuijian-div";
-            }
-            for (let i = 0; i < tuijianImg.length; i++) {
-                tuijianImg[i].className = "tuijian-img";
-            }
-            for (let i = 0; i < tuijianDes.length; i++) {
-                tuijianDes[i].className = "tuijian-des";
-            }
-        },
         scrollTop: function () {
             window.scrollTo(0,0);
         },
@@ -502,13 +488,35 @@ export default {
     height: 285px;
     padding: 10px 10px 0 10px;
     cursor: pointer;
+    transition-property: all;
+    transition-duration: .3s;
 }
 
-.tuijian-divh {
+.tuijian-div:hover {
     width: 240px;
     padding: 15px 15px 0 15px;
     height: 330px;
     box-shadow: 0px 0px 15px #aaa;
+}
+
+.tuijian-div:hover .tuijian-img {
+    position: relative;
+    display: block;
+    width: 235px;
+    height: 245px;
+    margin: 0 auto;
+}
+
+.tuijian-div:hover .tuijian-des {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 10px;
+    left: -15px;
+    width: 250px;
+    height: 85px;
+    background: #fbd437;
 }
 
 .tuijian-img {
@@ -516,14 +524,6 @@ export default {
     display: block;
     width: 185px;
     height: 206px;
-    margin: 0 auto;
-}
-
-.tuijian-imgh {
-    position: relative;
-    display: block;
-    width: 235px;
-    height: 245px;
     margin: 0 auto;
 }
 
@@ -540,18 +540,6 @@ export default {
     text-align: center;
     color: #666666;
     background: #f1e9c9;
-}
-
-.tuijian-desh {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 0 10px;
-    left: -15px;
-    width: 250px;
-    height: 85px;
-    background: #fbd437;
 }
 
 /* 宣传视频 */
@@ -596,15 +584,6 @@ export default {
     background: #ffffff;
 }
 
-.hottui-ul .hottui-title:hover {
-    font-size: 12px;
-    color: #333333;
-    line-height: 35px;
-    height: 35px;
-    border-bottom: 1px solid #e6e6e6;
-    background: #ffffff;
-}
-
 .hottui-ul .hottui-title img {
     position: relative;
     display: inline-block;
@@ -620,6 +599,8 @@ export default {
     font-size: 14px;
     text-align: center;
     color: #666666;
+    transition-property: all;
+    transition-duration: .3s;
 }
 
 .hottui-ul li:hover {
@@ -694,6 +675,8 @@ export default {
     background: #f9f9f9;
     border: 1px solid #eeeeee;
     cursor: pointer;
+    transition-property: all;
+    transition-duration: .3s;
 }
 
 .video-div:hover {
