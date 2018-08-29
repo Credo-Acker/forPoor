@@ -138,7 +138,6 @@ export default {
         },
         play: function () {
             if (this.timer) {
-                console.log("有问题");
                 clearInterval(this.timer);
                 this.timer = null;
             }

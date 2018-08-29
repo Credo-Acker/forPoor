@@ -460,7 +460,7 @@ export default {
     display: inline-block;
     width: 37px;
     height: 35px;
-    background: url(../assets/xuanchuan.png);
+    background: url(../assets/movie.png);
     background-size: 100% 100%;
 }
 
